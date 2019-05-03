@@ -1,0 +1,23 @@
+/* Add application styles & imports to this file! */
+@import 
+'~@angular/material/prebuilt-themes/indigo-pink.css'; 
+
+html {width:100%}
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0px auto;
+  min-width:400px;
+  max-width:500px;
+}
+
+h4 {font-family: Roboto, Arial, sans-serif; text-align: center} 
+
+.formulario {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+}
+
+button {margin-right: 1em !important}
+mat-form-field {margin-bottom:1.2em}

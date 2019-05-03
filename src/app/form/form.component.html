@@ -1,0 +1,33 @@
+<div class='col-12'>
+<h4>Cadastro de usuários</h4>
+<form class="formulario" [formGroup]="controle">
+	<mat-form-field>
+		<input matInput placeholder="Nome" maxlength="40" formControlName="nome" required>
+    <mat-hint>Forneça o seu nome completo</mat-hint>
+    <mat-error *ngIf="controle.get('nome').hasError('pattern')">
+      O nome só pode ter letras e espaços
+    </mat-error>
+    <mat-error *ngIf="controle.get('nome').hasError('minlength') && !controle.get('nome').hasError('pattern')">
+      O nome precisa ter pelo menos 5 caracteres
+    </mat-error>
+    <mat-error *ngIf="controle.get('nome').hasError('required')">
+      O nome é obrigatório
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    		<input matInput placeholder="Cidade" formControlName="nome" required>
+    <mat-autocomplete placeholder="Cidade" formControlName="cidade" required>
+      <mat-option *ngFor="let item of cidades" [value]="item">{{item}}</mat-option>
+    </mat-autocomplete>
+    <mat-hint>Selecione sua cidade</mat-hint>
+    <mat-error *ngIf="controle.get('cidade').hasError('required')">
+      Cidade é obrigatório
+    </mat-error>
+  </mat-form-field>
+  <div class="botoes">
+    <button mat-stroked-button type="submit" [disabled]="!controle.valid" (click)="salvar()">Salvar</button>
+    <button mat-stroked-button type="button" (click)="controle.reset()">Limpar</button>
+  </div>
+</form>
+</div>

@@ -1,0 +1,46 @@
+<div class='col-12'>
+<h4>Cadastro de usuários</h4>
+<form #cadastro="ngForm" (ngSubmit)="salvar(); cadastro.resetForm()" class="formulario">
+	<mat-form-field>
+		<input matInput placeholder="Nome" [(ngModel)]="usuario.nome" name="nome" #nome="ngModel" minlength="5" maxlength="40" required>
+    <mat-hint>Forneça o seu nome completo</mat-hint>
+    <mat-error *ngIf="!nome.minlength && !nome.pristine">
+      O nome precisa ter pelo menos 5 caracteres
+    </mat-error>
+   <mat-error *ngIf="!nome.valid && nome.pristine"> <!-- !nome.valida se refere ao #nome="ngModel" -->
+      O nome é obrigatório
+    </mat-error>
+  </mat-form-field> 
+ 
+  <mat-form-field>
+    <mat-select matInput placeholder="Cidade" [(ngModel)]="usuario.cidade" name="cidade" required #cidade="ngModel">
+      <mat-option *ngFor="let item of cidades" value="{{item}}">{{item}}</mat-option>
+    </mat-select>
+    <mat-hint>Selecione a sua cidade</mat-hint>
+    <mat-error *ngIf="!cidade.valid">
+      Cidade é obrigatório
+    </mat-error>
+  </mat-form-field> 
+
+  <div class="botoes">
+    <button mat-stroked-button type="submit" [disabled]="!cadastro.form.valid">Salvar</button>
+    <button mat-stroked-button type="button" (click)="cadastro.reset()">Limpar</button>
+  </div>
+</form>
+
+<table mat-table [dataSource]="servico.dataSource" class="mat-elevation-z1">
+
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef>NOME</th>
+    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cidade">
+    <th mat-header-cell *matHeaderCellDef>CIDADE</th>
+    <td mat-cell *matCellDef="let element"> {{element.cidade}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="colunas" class="linha-header"></tr>
+  <tr mat-row *matRowDef="let linha; columns: colunas;" class="linha-body"></tr>
+</table>
+</div>
