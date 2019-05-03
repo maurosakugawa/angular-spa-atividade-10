@@ -7,17 +7,14 @@
     <mat-error *ngIf="controle.get('nome').hasError('pattern')">
       O nome só pode ter letras e espaços
     </mat-error>
-    <mat-error *ngIf="controle.get('nome').hasError('minlength') && !controle.get('nome').hasError('pattern')">
-      O nome precisa ter pelo menos 5 caracteres
-    </mat-error>
     <mat-error *ngIf="controle.get('nome').hasError('required')">
       O nome é obrigatório
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    		<input matInput placeholder="Cidade" formControlName="nome" required>
-    <mat-autocomplete placeholder="Cidade" formControlName="cidade" required>
+    		<input type="text" formControlName="cidade" placeholder="Cidade" matInput [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let item of cidades" [value]="item">{{item}}</mat-option>
     </mat-autocomplete>
     <mat-hint>Selecione sua cidade</mat-hint>
